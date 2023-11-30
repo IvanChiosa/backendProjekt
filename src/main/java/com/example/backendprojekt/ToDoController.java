@@ -22,7 +22,7 @@ public class ToDoController {
         toDoService.addToDoItem(todoRecord);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/{id}")
     public void removeTodoItem(@PathVariable String id) {
         toDoService.removeToDoItem(id);
     }

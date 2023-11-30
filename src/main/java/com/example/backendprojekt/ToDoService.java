@@ -27,9 +27,12 @@ public class ToDoService {
     public void updateToDoItem(String id, ToDoRecord updatedToDo) {
         Optional<ToDoRecord> existingToDo = toDoRepository.findById(id);
         existingToDo.ifPresent(todoToUpdate -> {
-            todoToUpdate.withDescription(updatedToDo.description());
-            todoToUpdate.withStatus(updatedToDo.status());
-            toDoRepository.save(todoToUpdate);
+            ToDoRecord updatedRecord = new ToDoRecord(
+                    todoToUpdate.id(),
+                    todoToUpdate.description(),
+                    updatedToDo.status()
+            );
+            toDoRepository.save(updatedRecord);
         });
     }
 
@@ -39,6 +42,4 @@ public class ToDoService {
         // Überprüfen, ob das ToDo-Element vorhanden ist
         return toDoOptional.orElse(null);
     }
-
-
 }
