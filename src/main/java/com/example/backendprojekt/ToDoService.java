@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ToDoService {
@@ -18,10 +19,6 @@ public class ToDoService {
 
     public void addToDoItem(ToDoRecord todoRecord) {
         toDoRepository.save(todoRecord);
-    }
-
-    public void removeToDoItem(String id) {
-        toDoRepository.deleteById(id);
     }
 
     public void updateToDoItem(String id, ToDoRecord updatedToDo) {
@@ -42,4 +39,12 @@ public class ToDoService {
         // Überprüfen, ob das ToDo-Element vorhanden ist
         return toDoOptional.orElse(null);
     }
+
+    public void removeToDoItem(String id) {
+        toDoRepository.deleteById(id);
+    }
+
+//    public void removeToDoItem(UUID id) {
+//        toDoRepository.deleteById(id.toString());
+//    }
 }
